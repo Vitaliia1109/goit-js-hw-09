@@ -15,15 +15,19 @@ form.addEventListener("input", (event) => {
 const savedState = JSON.parse(localStorage.getItem(localStorageKey))
 
 if (savedState) {
-    emailInput = savedState.email
-    messageInput = savedState.message
+    emailInput.value = savedState.email
+    messageInput.value = savedState.message
 }
 
 form.addEventListener("submit", (event) => {
     event.preventDefault()
+    if (!emailInput.value || !messageInput.value) {
+    
+    return;
+  }
     const formData =  {
-        email: emailInput.value,
-        message: messageInput.value
+        email: emailInput.value.trim(),
+        message: messageInput.value.trim()
     }
     console.log('Form data:', formData);
 
